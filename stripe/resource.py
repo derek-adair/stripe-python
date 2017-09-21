@@ -36,6 +36,7 @@ def convert_to_stripe_object(resp, api_key=None, stripe_version=None,
         'recipient_transfer': RecipientTransfer,
         'refund': Refund,
         'source': Source,
+        'source_transaction': SourceTransaction,
         'subscription': Subscription,
         'subscription_item': SubscriptionItem,
         'three_d_secure': ThreeDSecure,
@@ -1197,3 +1198,12 @@ class Source(CreateableAPIResource, UpdateableAPIResource, VerifyMixin):
                 'Source objects cannot be deleted, they can only be detached '
                 'from customer objects. This source object does not appear to '
                 'be currently attached to a customer object.')
+
+    def source_transactions(self, **params):
+        return self.request(
+            'get', self.instance_url() + '/source_transactions', params)
+
+
+# This resource can only be instantiated when listed from a Source
+class SourceTransaction(StripeObject):
+    pass
