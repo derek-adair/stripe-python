@@ -1,0 +1,4 @@
+{
+    "installed-apps": ["stripe"], 
+    "package-name": "divio-stripe"
+}
